@@ -1,0 +1,65 @@
+name: contact_sharing
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.15.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  get: ^4.5.1
+
+  # Dependency Injection
+  get_it: ^7.2.0
+
+  # Network
+  http: ^0.13.4
+  data_connection_checker_tv: ^0.3.5-nullsafety
+  url_launcher: ^6.0.17
+
+  # Firebase
+  firebase_auth: ^3.3.4
+
+  # Value Equality
+  equatable: ^2.0.3
+
+  # Device
+  image_picker: ^0.8.4+4
+
+  # User Interface
+  cupertino_icons: ^1.0.4
+  country_calling_code_picker: ^2.0.0
+  flutter_svg: ^1.0.0
+  pin_code_text_field: ^1.8.0
+  dotted_border: ^2.0.0+2
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/illustrations/
+
+  fonts:
+    - family: Sora
+      fonts:
+        - asset: assets/fonts/Sora-Regular.ttf
+          weight: 300
+        - asset: assets/fonts/Sora-SemiBold.ttf
+          weight: 400
+        - asset: assets/fonts/Sora-Medium.ttf
+          weight: 600
+        - asset: assets/fonts/Sora-ExtraBold.ttf
+          weight: 700

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "327847274441",
+    "project_id": "facecontact-6f0dc",
+    "storage_bucket": "facecontact-6f0dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327847274441:android:7265235e26017e08866a18",
+        "android_client_info": {
+          "package_name": "com.dthackathon.contact_sharing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327847274441-3cu5niqhtak2gcisosl8s470lfucl666.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dthackathon.contact_sharing",
+            "certificate_hash": "ad143a3c7168fe1a496ba1e874cdb4dd91bad5dd"
+          }
+        },
+        {
+          "client_id": "327847274441-t418hid74ugcclkluq1252jiqgi45mqr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCnw2-YBzJUQ7WV48d1WpV1KrkB5vCeUQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "327847274441-t418hid74ugcclkluq1252jiqgi45mqr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
