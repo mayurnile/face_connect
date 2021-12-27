@@ -51,6 +51,7 @@ class HomeScreen extends StatelessWidget {
   Widget _buildHomeInitialState(Size size, TextTheme textTheme) => SizedBox(
         width: size.width,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             // illustration
             SvgPicture.asset(
@@ -108,7 +109,7 @@ class HomeScreen extends StatelessWidget {
       );
 
   Widget _buildHomeSearchState(Size size, TextTheme textTheme) => Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // display snapped image
           Container(
@@ -168,7 +169,46 @@ class HomeScreen extends StatelessWidget {
         ),
       );
 
-  Widget _buildFoundUsersList(TextTheme textTheme, List<SearchedUser> foundUsers) => Container();
+  Widget _buildFoundUsersList(TextTheme textTheme, List<SearchedUser> foundUsers) => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 22.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // spacing
+            const SizedBox(height: 22.0),
+            // header
+            Row(
+              children: [
+                // title
+                Text(
+                  'Connections found',
+                  style: textTheme.headline6,
+                ),
+                // spacing
+                const Spacer(),
+                // snap more button
+                GestureDetector(
+                  onTap: () {
+                    locator.get<HomeController>().state = HomeState.INITIAL;
+                    locator.get<HomeController>().update();
+                  },
+                  child: Text(
+                    'Snap More',
+                    style: textTheme.headline5!.copyWith(color: AppTheme.secondaryColor),
+                  ),
+                ),
+              ],
+            ),
+            // users list
+            Expanded(
+              child: ListView.builder(
+                itemCount: foundUsers.length,
+                itemBuilder: (BuildContext ctx, int index) => FoundUser(user: foundUsers[index]),
+              ),
+            ),
+          ],
+        ),
+      );
 
   Widget _buildErrorState(String error, TextTheme textTheme) => Center(
         child: Column(

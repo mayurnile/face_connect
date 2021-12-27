@@ -9,6 +9,7 @@ class IconAssets {
   static const dropDownArrow = '$basePath/arrow_down.svg';
   static const date = '$basePath/date.svg';
   static const snap = '$basePath/camera.svg';
+  static const addFriend = '$basePath/add_friend.svg';
 
   // nav bar
   static const home = '$basePath/home.svg';

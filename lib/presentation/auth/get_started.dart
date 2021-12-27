@@ -269,7 +269,9 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
   Future<void> _pickImage() async {
     FocusScope.of(context).unfocus();
     _clearError();
-    _selectedPicture = await _picker.pickImage(source: ImageSource.gallery);
+
+    final ImageSource source = await showImageSourcePicker(context: context);
+    _selectedPicture = await _picker.pickImage(source: source);
 
     if (_selectedPicture != null) {
       setState(() => _isImageUploading = true);

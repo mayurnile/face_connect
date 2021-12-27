@@ -23,6 +23,9 @@ dependencies:
   data_connection_checker_tv: ^0.3.5-nullsafety
   url_launcher: ^6.0.17
 
+  # Date Time
+  intl: ^0.17.0
+
   # Firebase
   firebase_auth: ^3.3.4
 
@@ -38,6 +41,7 @@ dependencies:
   flutter_svg: ^1.0.0
   pin_code_text_field: ^1.8.0
   dotted_border: ^2.0.0+2
+  fluttertoast: ^8.0.8
 
 
 dev_dependencies:

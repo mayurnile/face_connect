@@ -18,3 +18,6 @@ export '../services/services.dart';
 export './utils/constants.dart';
 export './utils/validators.dart';
 export './utils/input_formatters.dart';
+
+// extensions
+export './extensions/date_extensions.dart';

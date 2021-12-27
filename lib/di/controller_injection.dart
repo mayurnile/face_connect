@@ -9,7 +9,15 @@ void initControllers() {
   final AuthController authController = Get.put(AuthController());
   locator.registerLazySingleton(() => authController);
 
-  // Home Contoller
+  // Home Controller
   final HomeController homeController = Get.put(HomeController());
   locator.registerLazySingleton(() => homeController);
+
+  // Request Controller
+  final RequestsController requestController = Get.put(RequestsController());
+  locator.registerLazySingleton(() => requestController);
+
+  // Friends Contrloller
+  final FriendsController friendsController = Get.put(FriendsController());
+  locator.registerLazySingleton(() => friendsController);
 }

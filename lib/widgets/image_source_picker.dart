@@ -1,13 +1,14 @@
 import 'package:contact_sharing/core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-Future<String> showGenderPicker({required BuildContext context}) async {
+Future<ImageSource> showImageSourcePicker({required BuildContext context}) async {
   // data variables
-  String selectedGender = 'Male';
+  ImageSource selectedSource = ImageSource.camera;
 
   // gender picker widget
-  final Widget genderPickerDialog = GenderPickerDialog(
-    onChanged: (String value) => selectedGender = value,
+  final Widget sourcePickerDialog = SourcePickerDialog(
+    onChanged: (ImageSource value) => selectedSource = value,
   );
 
   // modal popup
@@ -20,31 +21,29 @@ Future<String> showGenderPicker({required BuildContext context}) async {
         topRight: Radius.circular(12.0),
       ),
     ),
-    builder: (_) => genderPickerDialog,
+    builder: (_) => sourcePickerDialog,
   );
 
-  return selectedGender;
+  return selectedSource;
 }
 
-class GenderPickerDialog extends StatefulWidget {
+class SourcePickerDialog extends StatefulWidget {
   final Function onChanged;
 
-  const GenderPickerDialog({
+  const SourcePickerDialog({
     Key? key,
     required this.onChanged,
   }) : super(key: key);
 
   @override
-  State<GenderPickerDialog> createState() => _GenderPickerDialogState();
+  State<SourcePickerDialog> createState() => _SourcePickerDialogState();
 }
 
-class _GenderPickerDialogState extends State<GenderPickerDialog> {
+class _SourcePickerDialogState extends State<SourcePickerDialog> {
   // data variables
-  static const List<String> _genders = [
-    'Male',
-    'Female',
-    'Non-Binary',
-    'Prefer not to answer',
+  static const List<ImageSource> _sources = [
+    ImageSource.camera,
+    ImageSource.gallery,
   ];
 
   // device variables
@@ -64,7 +63,7 @@ class _GenderPickerDialogState extends State<GenderPickerDialog> {
         children: [
           // title
           Text(
-            'Select Gender',
+            'Select Source',
             style: textTheme.headline3,
           ),
           // spacing
@@ -72,7 +71,7 @@ class _GenderPickerDialogState extends State<GenderPickerDialog> {
           // gender picker
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: _genders.map((gender) => _tileWidget(gender, textTheme)).toList(),
+            children: _sources.map((source) => _tileWidget(source, textTheme)).toList(),
           ),
         ],
       ),
@@ -82,15 +81,15 @@ class _GenderPickerDialogState extends State<GenderPickerDialog> {
   /// Builder Functions
   ///
   ///
-  Widget _tileWidget(String title, TextTheme textTheme) => GestureDetector(
+  Widget _tileWidget(ImageSource source, TextTheme textTheme) => GestureDetector(
         onTap: () {
-          widget.onChanged(title);
+          widget.onChanged(source);
           locator.get<NavigationService>().pop();
         },
         child: Padding(
           padding: const EdgeInsets.only(top: 22.0),
           child: Text(
-            title,
+            source == ImageSource.camera ? 'Camera' : 'Gallery',
             style: textTheme.headline4,
             textAlign: TextAlign.left,
           ),

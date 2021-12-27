@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 
-import './controllers.dart';
-
 import '../core/core.dart';
 import '../models/models.dart';
 
@@ -17,8 +15,8 @@ class HomeController extends GetxController {
   // data variables
   late List<SearchedUser> foundUsers;
   late String requestKey;
-  XFile? _selectedPicture;
-  File? _userPhoto;
+  late XFile? _selectedPicture;
+  late File? _userPhoto;
 
   // controller vairables
   late String errorMessage;
@@ -53,7 +51,7 @@ class HomeController extends GetxController {
       update();
 
       // final String imageURL = await locator.get<AuthController>().uploadImage(image);
-      const String imageURL = "https://faceconnect.s3.ap-south-1.amazonaws.com/user/9189d1d7-b08a-4fec-a417-173f998737df.png";
+      const String imageURL = "https://faceconnect.s3.ap-south-1.amazonaws.com/user/94d49b13-4e63-40ee-bb31-2452962b3ffc.png";
 
       final Uri uri = Uri.parse("$BASE_URL/user/findUser");
 
@@ -65,8 +63,7 @@ class HomeController extends GetxController {
           'Content-Type': 'application/json',
         },
       );
-      print(response.statusCode);
-      print(response.body);
+
       if (response.statusCode == 200) {
         final Map<String, dynamic> parsedJSON = json.decode(response.body) as Map<String, dynamic>;
 
@@ -98,6 +95,39 @@ class HomeController extends GetxController {
       }
     } catch (e) {
       state = HomeState.ERROR;
+      update();
+    }
+  }
+
+  // Method for sending connection request
+  Future<void> sendConnectionRequest(String token, String receiverID) async {
+    try {
+      final Uri url = Uri.parse("$BASE_URL/user/sendConnectionRequest");
+      final response = await http.post(
+        url,
+        body: json.encode({
+          "key": requestKey,
+          "receiverId": receiverID,
+        }),
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> parsedJSON = json.decode(response.body) as Map<String, dynamic>;
+
+        if (parsedJSON["status"] == "success") {
+          foundUsers.removeWhere((user) => user.id == receiverID);
+          update();
+        }
+      } else {
+        throw Exception();
+      }
+    } catch (e) {
+      state = HomeState.ERROR;
+      errorMessage = 'Something went wrong...';
       update();
     }
   }
