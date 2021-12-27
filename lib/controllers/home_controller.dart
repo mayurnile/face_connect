@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../core/core.dart';
 import '../models/models.dart';
+import '../controllers/controllers.dart';
 
 class HomeController extends GetxController {
   // Dependencies
@@ -50,8 +51,8 @@ class HomeController extends GetxController {
       state = HomeState.SEARCHING_CONNECTIONS;
       update();
 
-      // final String imageURL = await locator.get<AuthController>().uploadImage(image);
-      const String imageURL = "https://faceconnect.s3.ap-south-1.amazonaws.com/user/94d49b13-4e63-40ee-bb31-2452962b3ffc.png";
+      final String imageURL = await locator.get<AuthController>().uploadImage(image);
+      // const String imageURL = "https://faceconnect.s3.ap-south-1.amazonaws.com/user/94d49b13-4e63-40ee-bb31-2452962b3ffc.png";
 
       final Uri uri = Uri.parse("$BASE_URL/user/findUser");
 
